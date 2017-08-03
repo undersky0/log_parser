@@ -16,20 +16,26 @@ describe Services::Parsers::LogParser do
       end
 
       it "return correct path and visit count ordered by visit count" do
+        most_visited_path  = "/about/2"
+        most_visited_path_visit_count = 90
 
         first_path = log_parser.results[:path_visits].first[:path]
         first_path_visits = log_parser.results[:path_visits].first[:visits]
 
         expect(first_path).to eq("/about/2")
-        expect(first_path_visits).to eq(90)
+        expect(first_path_visits).to eq(most_visited_path_visit_count)
       end
 
       it "return correct uniq path and uniq visit count ordered by visit count" do
+        most_visited_uniq_path = "/contact"
+        path_uniq_view_count = 10
+
         first_uniq_path = log_parser.results[:uniq_path_visits].first[:path]
         first_uniq_path_visits = log_parser.results[:uniq_path_visits].first[:uniq_views]
 
-        expect(first_uniq_path).to eq("/contact")
-        expect(first_uniq_path_visits).to eq(10)
+
+        expect(first_uniq_path).to eq(most_visited_uniq_path)
+        expect(first_uniq_path_visits).to eq(path_uniq_view_count)
       end
     end
 
